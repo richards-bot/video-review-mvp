@@ -71,10 +71,16 @@ terraform apply \
 ## Running Tests
 
 ```bash
+# Go tests
 go test ./...
+
+# Viewer JS tests (requires Node 18+)
+cd viewer && npm install && npm test
 ```
 
-Tests in `internal/crypto/` verify round-trip and cross-check vectors. Tests in `internal/chunker/` cover edge cases. Integration tests requiring a real S3 bucket are gated behind `TEST_S3_BUCKET`.
+Go tests in `internal/crypto/` verify round-trip and cross-check vectors. Tests in `internal/chunker/` cover edge cases. Integration tests requiring a real S3 bucket are gated behind `TEST_S3_BUCKET`.
+
+Viewer tests (Vitest) cover fragment parsing, CEK decoding, nonce/AAD construction per the spec, and fixture decryption — verifying Go-encrypt ↔ JS-decrypt interoperability.
 
 ## Security Properties
 

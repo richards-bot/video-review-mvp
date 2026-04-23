@@ -15,6 +15,7 @@ PATH=.tools/go/bin:$PATH go test ./...    # Tests
 PATH=.tools/go/bin:$PATH go vet ./...     # Vet
 
 # Viewer (no build step — open directly in browser or serve statically)
+cd viewer && npm install && npm test        # Run viewer JS unit tests (Vitest)
 # scripts/
 ./scripts/build.sh                         # Cross-platform binary build
 ./scripts/deploy-viewer.sh                 # Deploy viewer to S3

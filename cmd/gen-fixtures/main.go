@@ -91,10 +91,10 @@ func main() {
 
 	// Write fixture.json with all parameters
 	fixtureJSON := map[string]interface{}{
-		"note":       "Test fixture for viewer unit tests. CEK is all-zeros (32 bytes). Asset ID is fixed.",
-		"asset_id":   assetID,
-		"cek_hex":    cekHex,
-		"cek_b64url": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+		"note":        "Test fixture for viewer unit tests. CEK is all-zeros (32 bytes). Asset ID is fixed.",
+		"asset_id":    assetID,
+		"cek_hex":     cekHex,
+		"cek_b64url":  "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
 		"chunk_count": 3,
 		"chunk_plaintexts": []string{
 			string(chunkPlaintexts[0]),
@@ -103,10 +103,10 @@ func main() {
 		},
 		"manifest_plaintext_json": string(manifestJSON),
 		"files": map[string]string{
-			"manifest":    "fixture-manifest.enc",
-			"chunk_0":     "fixture-chunk-000000.enc",
-			"chunk_1":     "fixture-chunk-000001.enc",
-			"chunk_2":     "fixture-chunk-000002.enc",
+			"manifest": "fixture-manifest.enc",
+			"chunk_0":  "fixture-chunk-000000.enc",
+			"chunk_1":  "fixture-chunk-000001.enc",
+			"chunk_2":  "fixture-chunk-000002.enc",
 		},
 	}
 

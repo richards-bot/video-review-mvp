@@ -27,7 +27,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "echo '[Hook] Reminder: Run bd sync before pushing. Run /code-review if needed.'"
+            "command": "echo '[Hook] Reminder: beads auto-syncs via Dolt. If you changed tracker state, verify with bd list --json --all before pushing. Run /code-review if needed.'"
           }
         ],
         "description": "Reminder to sync beads before push"
@@ -61,10 +61,10 @@
         "hooks": [
           {
             "type": "command",
-            "command": "if command -v bd >/dev/null 2>&1 && [ -d .beads ]; then echo '[Hook] Reminder: Run bd sync if you made issue changes this session.' >&2; fi"
+            "command": "if command -v bd >/dev/null 2>&1 && [ -d .beads ]; then echo '[Hook] Reminder: beads auto-syncs via Dolt. If you changed issues, verify with bd list --json --all or bd vc status.' >&2; fi"
           }
         ],
-        "description": "Remind to bd sync at session end"
+        "description": "Remind to verify beads state at session end"
       }
     ]
   }

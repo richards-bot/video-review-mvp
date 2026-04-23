@@ -10,13 +10,14 @@ Finish the current task, run quality gates, and close the beads issue.
    ```
    If none: suggest `/start-bead`.
 
-2. Run quality gates (adapt to project stack):
+2. Run quality gates for this repo:
    ```bash
-   npm test
-   npm run lint
-   npm run typecheck
+   PATH=.tools/go/bin:$PATH go test ./...
+   PATH=.tools/go/bin:$PATH go vet ./...
+   PATH=.tools/go/bin:$PATH .tools/bin/staticcheck ./...
+   npm --prefix viewer test -- --run
    ```
-   If `typecheck` does not exist, continue without failing on that step.
+   If `ffmpeg`/`ffprobe` are unavailable, skip only tests that explicitly require them.
 
 3. Confirm outside-in evidence is present:
    - Acceptance/E2E or contract tests for user-visible behavior
@@ -28,12 +29,13 @@ Finish the current task, run quality gates, and close the beads issue.
    git diff --stat
    ```
 
-5. If checks pass — stage specific files (NOT `git add -A`), commit, close and sync:
+5. If checks pass — stage specific files (NOT `git add -A`), commit, close, verify tracker state, and push:
    ```bash
    git add [specific files]
    git commit -m "type(scope): description (bd-xxx)"
    bd close [id] --reason "Completed" --json
-   bd sync
+   bd list --json --all
+   git push
    ```
 
 6. If checks fail — show failures, fix or propose fixes, do NOT close the issue.

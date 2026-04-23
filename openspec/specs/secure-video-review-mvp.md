@@ -2,7 +2,7 @@
 
 **Status:** Implemented (v1.0)
 **Spec source:** This file (`openspec/specs/secure-video-review-mvp.md`)
-**Full technical detail:** [`SPEC.md`](../../SPEC.md) (898 lines, authoritative)
+**Detailed design reference:** [`SPEC.md`](../../SPEC.md) (898 lines, supporting technical detail)
 **Beads issues:** `video-review-mvp-06p`, `video-review-mvp-cy2`, `video-review-mvp-hm3`
 
 ---
@@ -34,7 +34,7 @@ All criteria are verified green as of commit `3159679`.
 | AC-06 | `go vet ./...` and `gofmt -l` produce no output | ✅ |
 | AC-07 | `viewer/index.html` carries SRI `integrity=` on all `<script>` tags | ✅ |
 | AC-08 | No secrets in source; `.env.example` documents required variables | ✅ |
-| AC-09 | Terraform creates S3 bucket with SSE-S3 and correct CORS for viewer origin | ✅ |
+| AC-09 | Terraform creates S3 bucket with SSE-KMS default encryption and correct CORS for viewer origin | ✅ |
 | AC-10 | Share URL fragment never appears in S3 server access logs (browser design) | ✅ (by design) |
 
 ## Assumptions

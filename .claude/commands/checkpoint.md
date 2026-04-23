@@ -12,11 +12,11 @@ Create a safety save point to preserve current progress.
 
 2. Ask for a brief description of current state.
 
-3. Stage specific changed files (NOT `git add -A`), commit, and sync:
+3. Stage specific changed files (NOT `git add -A`), commit, and optionally verify tracker state:
    ```bash
    git add [specific files]
    git commit -m "checkpoint: [description] (bd-xxx)"
-   bd sync
+   bd list --json --all
    ```
 
 4. Confirm with commit hash and files included.

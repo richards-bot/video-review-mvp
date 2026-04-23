@@ -54,14 +54,14 @@ Every code change requires a tracked beads issue.
 ### During work
 - **Commit AND push after every meaningful change** — a completed function, a passing test, a config update. Small, frequent commits beat one large commit at the end.
 - Commit with issue ID: `git commit -m "type(scope): description (bd-xxx)"` then immediately `git push`
-- `bd sync` after issue changes
+- Beads auto-syncs via Dolt; use `bd list --json --all` or `bd vc status` when you need confirmation after issue changes
 - Use `bd update <id> --notes "context"` to record decisions
 - If you've edited 3+ files without committing and pushing, stop and do it now.
 
 ### Session end
 1. `bd close <id> --reason "Completed" --json` (if done)
-2. `bd sync`
-3. `git push` (work is NOT done until pushed)
+2. `git push` (work is NOT done until pushed)
+3. If you touched tracker state and want confirmation, run `bd list --json --all` or `bd vc status`
 
 ### Forbidden
 - NEVER use `bd edit` (interactive editor — agents cannot use it)

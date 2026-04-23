@@ -1,0 +1,77 @@
+# Dependencies
+node_modules/
+vendor/
+.venv/
+venv/
+__pycache__/
+*.pyc
+
+# Build outputs
+dist/
+build/
+out/
+*.egg-info/
+
+# Environment & secrets
+.env
+.env.local
+.env.*.local
+*.pem
+*.key
+secrets/
+
+# IDE & editors
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+.DS_Store
+Thumbs.db
+
+# Test & coverage
+coverage/
+.coverage
+htmlcov/
+.pytest_cache/
+.nyc_output/
+
+# Logs
+logs/
+*.log
+npm-debug.log*
+
+# Runtime
+*.pid
+*.seed
+pids/
+
+# Temp files
+tmp/
+temp/
+*.tmp
+*.bak
+
+# Package locks (uncomment if using specific package manager)
+# yarn.lock
+# pnpm-lock.yaml
+
+# OS files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+
+# Beads temp files
+.bd/tmp/
+*.bead.tmp
+
+# OpenSpec drafts
+openspec/drafts/
+*.draft.md
+
+# Dolt database files (added by bd init)
+.dolt/
+*.db

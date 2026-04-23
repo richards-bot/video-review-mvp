@@ -1,0 +1,7 @@
+{
+  "database": "dolt",
+  "backend": "dolt",
+  "dolt_mode": "server",
+  "dolt_database": "video_review_mvp",
+  "project_id": "40440279-b7ad-40ef-ac45-667126e7483d"
+}

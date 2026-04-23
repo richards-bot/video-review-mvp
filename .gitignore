@@ -51,6 +51,7 @@ tmp/
 temp/
 *.tmp
 *.bak
+.tools/
 
 # Package locks (uncomment if using specific package manager)
 # yarn.lock

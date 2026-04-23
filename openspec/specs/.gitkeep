@@ -1,0 +1,8 @@
+# Specifications Directory
+
+Place approved feature specifications here.
+
+Files in this directory:
+- Are the source of truth for feature requirements
+- Should be kept in sync with implementation
+- Follow the template in ../AGENTS.md

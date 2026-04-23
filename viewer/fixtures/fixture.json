@@ -1,0 +1,19 @@
+{
+  "asset_id": "aabbccddeeff00112233445566778899",
+  "cek_b64url": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+  "cek_hex": "0000000000000000000000000000000000000000000000000000000000000000",
+  "chunk_count": 3,
+  "chunk_plaintexts": [
+    "chunk0data",
+    "chunk1data",
+    "chunk2data"
+  ],
+  "files": {
+    "chunk_0": "fixture-chunk-000000.enc",
+    "chunk_1": "fixture-chunk-000001.enc",
+    "chunk_2": "fixture-chunk-000002.enc",
+    "manifest": "fixture-manifest.enc"
+  },
+  "manifest_plaintext_json": "{\"version\":1,\"asset_id\":\"aabbccddeeff00112233445566778899\",\"created_at\":\"2026-04-23T14:30:00Z\",\"created_by\":\"fixture@test.local\",\"source_filename\":\"fixture.mp4\",\"codec\":{\"video\":\"avc1.64001f\",\"audio\":\"mp4a.40.2\",\"mime\":\"video/mp4; codecs=\\\"avc1.64001f, mp4a.40.2\\\"\"},\"duration_ms\":5000,\"width\":320,\"height\":240,\"framerate\":25,\"chunk_size\":10,\"chunk_count\":3,\"total_bytes\":30,\"plaintext_sha256\":\"placeholder\",\"chunks\":[{\"index\":0,\"url\":\"fixture://chunk0\",\"size\":10},{\"index\":1,\"url\":\"fixture://chunk1\",\"size\":10},{\"index\":2,\"url\":\"fixture://chunk2\",\"size\":10}],\"expires_at\":\"2026-04-25T14:30:00Z\"}",
+  "note": "Test fixture for viewer unit tests. CEK is all-zeros (32 bytes). Asset ID is fixed."
+}

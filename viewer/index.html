@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="Content-Security-Policy"
+    content="default-src 'self'; connect-src 'self' https://*.s3.amazonaws.com https://*.s3.*.amazonaws.com; script-src 'self'; style-src 'self' 'unsafe-inline'; media-src blob:; worker-src 'self'">
+  <meta http-equiv="X-Content-Type-Options" content="nosniff">
+  <meta name="referrer" content="no-referrer">
+  <title>Secure Video Review</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div id="app">
+    <header>
+      <h1>Secure Video Review</h1>
+      <div id="meta">
+        <div id="meta-filename" class="filename"></div>
+        <div id="meta-details" class="details"></div>
+      </div>
+    </header>
+
+    <div id="video-container">
+      <video id="video" controls playsinline></video>
+    </div>
+
+    <div id="status" class="loading">Initialising…</div>
+    <div id="progress-bar"><div id="progress-fill"></div></div>
+    <div id="progress-text"></div>
+
+    <footer>
+      <a id="security-link" href="#security">About security</a>
+      <div id="security-info">
+        <strong>Security properties of this viewer</strong><br><br>
+        Content is encrypted with AES-256-GCM before upload to S3. The decryption key is contained
+        in the URL fragment and is never sent to any server. S3 stores only ciphertext and has no
+        access to the key.<br><br>
+        <strong>Limitations:</strong> This system does not prevent a reviewer from screen-recording
+        the content, does not watermark the video, cannot revoke access once a URL is shared
+        (presigned URLs expire after 48 h by default), and does not verify reviewer identity.
+        Anyone with the URL can view the content — the URL is the credential.<br><br>
+        For more information, see the project README.
+      </div>
+    </footer>
+  </div>
+
+  <script src="viewer.js"></script>
+</body>
+</html>

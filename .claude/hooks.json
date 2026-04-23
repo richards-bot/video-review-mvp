@@ -1,0 +1,71 @@
+{
+  "$schema": "https://json.schemastore.org/claude-code-settings.json",
+  "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "(tool == \"Edit\" || tool == \"Write\") && !(tool_input.file_path matches \"\\\\.(md|json|yaml|yml|toml)$\")",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "if command -v bd >/dev/null 2>&1 && [ -d .beads ]; then bd list --json 2>/dev/null | grep -q '\"status\":\"in_progress\"' || echo '[Hook] BLOCKED: No in-progress beads issue. Run: bd create \"description\" -p 1 --json && bd update <id> --status in_progress' >&2; fi"
+          }
+        ],
+        "description": "Enforce beads issue before code changes"
+      },
+      {
+        "matcher": "tool == \"Bash\" && tool_input.command matches \"git commit\"",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "if command -v bd >/dev/null 2>&1 && [ -d .beads ]; then bd list --json 2>/dev/null | grep -q '\"status\":\"in_progress\"' || echo '[Hook] WARNING: No in-progress beads issue. Commits should reference an issue: git commit -m \"description (bd-xxx)\"' >&2; fi"
+          }
+        ],
+        "description": "Warn on commit without active beads issue"
+      },
+      {
+        "matcher": "tool == \"Bash\" && tool_input.command matches \"git push\"",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "echo '[Hook] Reminder: Run bd sync before pushing. Run /code-review if needed.'"
+          }
+        ],
+        "description": "Reminder to sync beads before push"
+      },
+      {
+        "matcher": "tool == \"Bash\" && tool_input.command matches \"bd edit\"",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "echo '[Hook] BLOCKED: bd edit opens an interactive editor. Use bd update <id> --title/--description/--notes instead.' >&2"
+          }
+        ],
+        "description": "Block bd edit (interactive)"
+      }
+    ],
+    "PostToolUse": [
+      {
+        "matcher": "tool == \"Edit\" && tool_input.file_path matches \"\\\\.(ts|tsx|js|jsx)$\"",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node -e \"const fs=require('fs');let d='';process.stdin.on('data',c=>d+=c);process.stdin.on('end',()=>{const i=JSON.parse(d);const p=i.tool_input?.file_path;if(p&&fs.existsSync(p)){const c=fs.readFileSync(p,'utf8');if(/console\\.log/.test(c)){console.error('[Hook] WARNING: console.log found - remove before committing')}}console.log(d)})\""
+          }
+        ],
+        "description": "Warn about console.log after JS/TS edits"
+      }
+    ],
+    "Stop": [
+      {
+        "matcher": "*",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "if command -v bd >/dev/null 2>&1 && [ -d .beads ]; then echo '[Hook] Reminder: Run bd sync if you made issue changes this session.' >&2; fi"
+          }
+        ],
+        "description": "Remind to bd sync at session end"
+      }
+    ]
+  }
+}

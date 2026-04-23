@@ -16,35 +16,24 @@ npm install -g @fission-ai/openspec@latest
 
 ## Setup
 
-### From template (recommended)
-
 ```bash
-./setup.sh my-project-name
-cd my-project-name
+# Clone the repo
+git clone <repo-url>
+cd video-review-mvp
+
+# Go toolchain is bundled — add to PATH
+export PATH=.tools/go/bin:$PATH
+go build ./...
+
+# Viewer — no build step needed
+cd viewer && npm install && npm test && cd ..
+
+# Configure AWS credentials (standard credential chain)
+cp .env.example .env   # edit with your S3 bucket and region
+
+# Infrastructure (one-time, needs Terraform)
+cd infrastructure/terraform && terraform init && terraform apply
 ```
-
-This copies the template, initializes git, and sets up beads tracking in one step.
-
-### Manual setup
-
-```bash
-cp -r project-template my-project-name
-cd my-project-name
-rm -rf .git
-git init
-bd init
-bd hooks install          # Auto-syncs JSONL on commit/pull
-cp .env.example .env      # Edit with your values
-```
-
-### Then start Claude Code
-
-```bash
-claude
-> /brain-dump
-```
-
-Share your project idea. Claude will populate `openspec/project.md`, create feature specs in `openspec/specs/`, fill out project docs, and create beads issues linked to each spec.
 
 ## Daily Workflow
 
@@ -54,10 +43,8 @@ Share your project idea. Claude will populate `openspec/project.md`, create feat
               bd update <id> --status in_progress
 3. WORK       claude  (AI-assisted development)
 4. CHECKPOINT git add [files] && git commit -m "checkpoint: msg (bd-xxx)"
-              bd sync
-5. TEST       npm test
-6. FINISH     bd close <id> --reason "Completed" --json
-              bd sync && git push
+5. TEST       go test ./... (Go) or cd viewer && npm test (JS)
+6. FINISH     bd close <id> --reason "Completed" --json && git push
 ```
 
 ## Slash Commands (in Claude Code)
@@ -82,7 +69,6 @@ Share your project idea. Claude will populate `openspec/project.md`, create feat
 | `bd close <id> --reason "msg" --json` | Close issue |
 | `bd list --json` | List all issues |
 | `bd ready --json` | Show unblocked issues |
-| `bd sync` | Sync database with git |
 | `bd update <id> --notes "msg"` | Add notes to issue |
 | `bd show <id> --json` | Show issue details |
 

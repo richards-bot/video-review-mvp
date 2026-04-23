@@ -66,20 +66,17 @@ scripts/              Build + deploy
 
 - **Commit after every meaningful change** — don't batch all changes into one commit at the end
 - Commit with issue ID: `git commit -m "type(scope): description (bd-xxx)"`
-- Sync periodically: `bd sync`
 
 ### When done
 
 1. Close the issue: `bd close <id> --reason "Completed" --json`
-2. Sync: `bd sync`
-3. Run tests before finishing
+2. Run tests before finishing
 
 ### Critical rules
 
 - NEVER use `bd edit` (interactive — agents cannot use it)
 - Use `bd update <id> --title/--description/--notes` instead
 - Always use `--json` flag when creating/querying for structured output
-- Run `bd sync` after making issue changes
 - Include issue ID `(bd-xxx)` in commit messages
 
 Types: `feat`, `fix`, `docs`, `refactor`, `test`, `chore`
@@ -110,7 +107,6 @@ Branch naming: `feature/*`, `fix/*` from `main`
 - Run tests before marking work complete
 - Update `docs/DECISIONS.md` for architectural changes
 - Keep bead notes linked to spec paths (`Spec source: openspec/...`)
-- Run `bd sync` before ending a session
 
 ## Environment
 
